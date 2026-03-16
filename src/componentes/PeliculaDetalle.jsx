@@ -15,8 +15,11 @@ const PeliculaDetalle = ({ film }) => {
     async function loadActors() {
       setLoading(true);
       try {
+        //Permite ejecutar varias promesas en paralelo y esperar a que todas sean resueltas, devuelve objeto responses.
         const urls = film.characters.slice(0, 10);
+        //Utilizo Promise.all porque cada actor es una url distinta, lanzo una peticion conjunta.
         const responses = await Promise.all(urls.map(url => fetch(url)));
+        //Devuelve un array de promesas
         console.log("Responsessss:", responses);
         const data = await Promise.all(
 
